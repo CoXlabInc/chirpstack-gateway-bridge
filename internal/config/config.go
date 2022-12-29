@@ -20,8 +20,9 @@ type Config struct {
 		Type string `mapstructure:"type"`
 
 		SemtechUDP struct {
-			UDPBind    string `mapstructure:"udp_bind"`
-			FakeRxTime bool   `mapstructure:"fake_rx_time"`
+			UDPBind                string `mapstructure:"udp_bind"`
+			FakeRxTime             bool   `mapstructure:"fake_rx_time"`
+			GatewayCleanupDuration uint16 `mapstructure:"gateway_cleanup_duration"`
 		} `mapstructure:"semtech_udp"`
 
 		BasicStation struct {
