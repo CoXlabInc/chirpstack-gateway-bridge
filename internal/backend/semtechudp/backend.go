@@ -78,11 +78,12 @@ func NewBackend(conf config.Config) (*Backend, error) {
 
 	go func() {
 		for {
-			log.Debug("backend/semtechudp: cleanup gateway registry")
-			if err := b.gateways.cleanup(); err != nil {
+			log.WithField("cleanup duration", conf.Backend.SemtechUDP.GatewayCleanupDuration).Debug("backend/semtechudp: cleanup gateway registry")
+			var gatewayCleanupDuration = -1 * time.Duration(conf.Backend.SemtechUDP.GatewayCleanupDuration) * time.Second
+			if err := b.gateways.cleanup(gatewayCleanupDuration); err != nil {
 				log.WithError(err).Error("backend/semtechudp: gateway registry cleanup failed")
 			}
-			time.Sleep(time.Minute)
+			time.Sleep(time.Second)
 		}
 	}()
 

@@ -91,6 +91,12 @@ type="{{ .Backend.Type }}"
   # the time would otherwise be unset.
   fake_rx_time={{ .Backend.SemtechUDP.FakeRxTime }}
 
+  # Gateway Cleanup Duration
+  #
+  # The duration in unit of seconds after which the gateway is cleaned up from
+  # the registry after no activity. When gateways are not seen for this time,
+  # they will be removed from registry, and their state will be changed to OFFLINE.
+  gateway_cleanup_duration={{ .Backend.SemtechUDP.GatewayCleanupDuration }}
 
   # ChirpStack Concentratord backend.
   [backend.concentratord]
